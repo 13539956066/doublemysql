@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mappper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ninemysql.mapper.studentMapper">
+    <insert id="saveUser" parameterType="com.example.ninemysql.domain.Student" >
+            INSERT INTO lxy2018_table(id,name,university) VALUES(#{id},#{name},#{university})
+        </insert>
+    <select id="findAll" resultType="com.example.ninemysql.domain.Student">
+        SELECT * from lxy2018_table
+    </select>
+    <select id="seleteid" parameterType="int" resultType="com.example.ninemysql.domain.Student">
+        SELECT * from lxy2018_table where id = #{id}
+    </select>
+ <!--   <select id="seleteperson" parameterType="String" resultType="com.example.ninemysql.domain.Student">
+        SELECT * from lxy2018_table where name like concat('%',#{name},'%')
+    </select>
+-->
+    <select id="seletedouble" resultType="com.example.ninemysql.domain.Student">
+        SELECT * from lxy2018_table where name like concat('%',#{name},'%')and university like concat('%',#{university},'%')
+    </select>
+  <!--  <select id="seleteuniversity" parameterType="String" resultType="com.example.ninemysql.domain.Student">
+        SELECT * from lxy2018_table where university like concat('%',#{university},'%')
+    </select>
+-->
+    <update id="modify"><!-- parameterType="com.example.ninemysql.domain.Student"-->
+      UPDATE lxy2018_table set id=#{id},name=#{name},university=#{university} where id=#{oldid}
+    </update>
+    <delete id="dele" parameterType="int">
+        delete from lxy2018_table where id =#{id}
+    </delete>
+</mapper>
+
+

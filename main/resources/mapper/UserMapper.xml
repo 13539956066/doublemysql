@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mappper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ninemysql.mapper.userMapper">
+    <insert id="saveUser" parameterType="com.example.ninemysql.domain.User" >
+            INSERT INTO user(id,username,password) VALUES(#{id},#{username},#{password})
+        </insert>
+    <select id="findAll" parameterType="int" resultType="com.example.ninemysql.domain.User">
+        SELECT * from user
+    </select>
+    <select id="seleteperson" parameterType="int" resultType="com.example.ninemysql.domain.User">
+        SELECT * from user where id = #{id}
+    </select>
+    <select id="seleteName" parameterType="String" resultType="com.example.ninemysql.domain.User">
+        SELECT * from user where username like concat('%',#{name},'%')
+    </select>
+    <update id="modify">
+      UPDATE user set id=#{id},username=#{username},password=#{password} where id=#{oldid}
+    </update>
+    <delete id="dele" parameterType="int">
+        delete from user where id=#{id}
+    </delete>
+</mapper>
+
+
